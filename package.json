@@ -1,0 +1,20 @@
+{
+  "name": "http_respond",
+  "version": "1.0.0",
+  "description": "A simple nodeJS server that logs requests.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http_respond"
+  },
+  "keywords": [
+    "http"
+  ],
+  "author": "William Holmes",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
