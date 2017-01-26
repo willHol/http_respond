@@ -1,5 +1,4 @@
 var http = require('http');
-var util = require('util');
 var colors = require('colors');
 var prettyjson = require('prettyjson');
 var figlet = require('figlet');
