@@ -5,3 +5,7 @@ npm install
 To launch http-request:
 
 node main.js <portnumber>
+
+or 
+
+npm start <portnumber>
