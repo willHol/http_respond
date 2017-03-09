@@ -30,7 +30,7 @@ const httpServer = http.createServer((req, res) => {
   console.log(`${headers}\n${method}`);
 
   // Stop now if the request contains no body
-  if (!Number(headers['content-length'])) {
+  if (!Number(req.headers['content-length'])) {
     return res.end(console.log(`\n${rule()}\n`));
   }
 
@@ -40,14 +40,14 @@ const httpServer = http.createServer((req, res) => {
   // Stream the body into the console
   if (headers['content-type'] === 'application/json') {
     req
-      .pipe(through((buf, _, next) => {
+      .pipe(through(function(buf, _, next) {
         this.push(prettyjson.render(JSON.parse(buf), bodyOptions));
         next();
       }))
       .pipe(process.stdout);
   } else {
     req
-      .pipe(through((buf, _, next) => {
+      .pipe(through(function(buf, _, next) {
         this.push(buf.toString().green);
         next();
       }))
@@ -55,8 +55,10 @@ const httpServer = http.createServer((req, res) => {
   }
 
   // When the body finishes streaming end the program
-  req.on('end', () => console.log(`\n\n${rule()}\n`));
-  return res.end();
+  req.on('end', () => {
+    console.log(`\n\n${rule()}\n`);
+    return res.end();
+  });
 });
 
 httpServer.listen(process.argv[2]);
